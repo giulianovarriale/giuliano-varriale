@@ -3,6 +3,7 @@ import { Afacad_Flux } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
 import { HamburguerMenu } from './_components/HamburguerMenu';
+import Image from 'next/image';
 
 const afacadFlux = Afacad_Flux({
   variable: '--font-afacad_flux',
@@ -35,7 +36,17 @@ export default function RootLayout({
 }
 
 function Logo() {
-  return <span className="w-28 h-28 block bg-black" />;
+  return (
+    <span className="w-28 h-28 bg-black flex items-center justify-center">
+      <Image
+        width={46}
+        height={50}
+        src="/logo.svg"
+        alt=""
+        className="-translate-x-0.5"
+      />
+    </span>
+  );
 }
 
 function Header() {

@@ -17,7 +17,7 @@ export function HamburguerMenu({ navigation }: Props) {
         aria-label="Toggle navigation menu"
         onClick={() => setIsOpen(true)}
       >
-        <Menu size={32} />
+        <Menu size={32} strokeWidth={3} />
       </button>
 
       <div
