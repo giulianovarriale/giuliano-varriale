@@ -17,20 +17,20 @@ export function HamburguerMenu({ navigation }: Props) {
         aria-label="Toggle navigation menu"
         onClick={() => setIsOpen(true)}
       >
-        <Menu size={32} strokeWidth={3} />
+        <Menu size={32} strokeWidth={3} className="dark:text-zinc-100" />
       </button>
 
       <div
         className={`${
           isOpen ? 'flex flex-col' : 'hidden'
-        } absolute w-full h-full top-0 left-0 bg-white z-50 p-9`}
+        } absolute w-full h-full top-0 left-0 bg-white z-50 p-9 dark:bg-zinc-950`}
       >
         <button
           className="w-12 h-12 inline-flex justify-center items-center self-end"
           aria-label="Close navigation menu"
           onClick={() => setIsOpen(false)}
         >
-          <X />
+          <X className="dark:text-zinc-100" />
         </button>
 
         {navigation}

@@ -23,11 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${afacadFlux.variable} antialiased font-sans grid grid-rows-[auto_1fr_auto] min-h-screen`}
+        className={`${afacadFlux.variable} antialiased font-sans grid grid-rows-[auto_1fr_auto] min-h-screen dark:bg-zinc-950`}
       >
         <Header />
 
-        <main>{children}</main>
+        <main className="max-w-screen-xl mx-auto py-12 px-6 md:py-20 md:px-9">
+          {children}
+        </main>
 
         <Footer />
       </body>
@@ -59,14 +61,14 @@ function Header() {
       <div className="md:hidden">
         <HamburguerMenu
           navigation={
-            <nav className="flex flex-col gap-6 text-xl font-semibold">
+            <nav className="flex flex-col gap-6 text-xl font-semibold dark:text-zinc-100">
               <NavLinks />
             </nav>
           }
         />
       </div>
 
-      <nav className="hidden md:flex justify-center gap-6 text-xl font-semibold">
+      <nav className="hidden md:flex justify-center gap-6 text-2xl font-semibold dark:text-zinc-100">
         <NavLinks />
       </nav>
     </header>
