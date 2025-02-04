@@ -4,6 +4,7 @@ import './globals.css';
 import Link from 'next/link';
 import { HamburguerMenu } from './_components/HamburguerMenu';
 import Image from 'next/image';
+import { NavLink } from './_components/NavLink';
 
 const afacadFlux = Afacad_Flux({
   variable: '--font-afacad_flux',
@@ -92,11 +93,11 @@ function Footer() {
 function NavLinks() {
   return (
     <>
-      <Link href="/">home</Link>
-      <Link href="/about">about</Link>
-      <Link href="/blog">blog</Link>
-      <Link href="/experiments">experiments</Link>
-      <Link href="/contact">contact</Link>
+      <NavLink href="/">home</NavLink>
+      <NavLink href="/about">about</NavLink>
+      <NavLink href="/blog">blog</NavLink>
+      <NavLink href="/experiments">experiments</NavLink>
+      <NavLink href="/contact">contact</NavLink>
     </>
   );
 }
