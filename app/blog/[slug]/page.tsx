@@ -1,3 +1,16 @@
+import fs from 'fs';
+import { join } from 'path';
+
+export async function generateStaticParams() {
+  const postsDirectory = join(process.cwd(), 'app', 'blog', '[slug]');
+
+  const slugs = fs
+    .readdirSync(postsDirectory)
+    .filter((slug) => !slug.endsWith('.tsx'));
+
+  return slugs.map((slug) => ({ slug }));
+}
+
 export default async function Page({
   params,
 }: {
