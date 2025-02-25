@@ -19,7 +19,7 @@ export default function Page() {
 
         <div>
           <a
-            href="github.com/giulianovarriale"
+            href="https://github.com/giulianovarriale"
             className="text-xl text-green-600 underline"
           >
             github.com/giulianovarriale
@@ -28,7 +28,7 @@ export default function Page() {
 
         <div>
           <a
-            href="linkedin.com/in/giulianovarriale"
+            href="https://www.linkedin.com/in/giulianovarriale/"
             className="text-xl text-green-600 underline"
           >
             linkedin.com/in/giulianovarriale
