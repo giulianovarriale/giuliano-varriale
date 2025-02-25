@@ -28,7 +28,7 @@ export default async function Home() {
       <div className="grid gap-2">
         <Typography variant="h1">
           Hello, I am Giuliano Varriale, an experienced frontend developer that
-          loves to build great user experiences.
+          loves the art of crafting digital products.
         </Typography>
 
         <Typography variant="p">
@@ -40,69 +40,27 @@ export default async function Home() {
       </div>
 
       <div className="grid gap-6 md:gap-8">
-        <h2 className="text-3xl font-bold dark:text-zinc-100">
-          my latest experiments
-        </h2>
+        <Typography variant="h2">my latest blog posts</Typography>
 
         <div className="grid gap-4">
-          {[
-            {
-              title: 'giu_os',
-              description: 'building a fake operational system on the web',
-              url: 'https://google.com',
-            },
-            {
-              title: 'a drawing app',
-              description: 'a simple drawing app using canvas',
-              url: 'https://google.com',
-            },
-            {
-              title: 'my own slack',
-              description: 'a slack clone using react and firebase',
-              url: 'https://google.com',
-            },
-          ].map(({ title, description, url }) => (
-            <div key={title} className="flex flex-col gap-1">
-              <h3 className="text-2xl font-bold dark:text-zinc-100">
-                <Link href={url} className="underline" target="_blank">
-                  {title}
-                </Link>
-              </h3>
-
-              <p className="text-xl text-gray-700 dark:text-zinc-400">
-                {description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <Link href="/experiments" className="text-xl text-green-600 underline">
-          see all experiments
-        </Link>
-      </div>
-
-      <div className="grid gap-6 md:gap-8">
-        <h2 className="text-3xl font-bold dark:text-zinc-100">
-          my latest blog posts
-        </h2>
-
-        <div className="grid gap-4">
-          {posts.map(({ metadata }) => (
+          {posts.slice(0, 4).map(({ metadata }) => (
             <div key={metadata.slug} className="flex flex-col gap-1">
-              <h3 className="text-2xl font-bold underline dark:text-zinc-100">
-                <Link href={`/blog/${metadata.slug}`}>{metadata.title}</Link>
-              </h3>
+              <Typography variant="h3">
+                <Link href={`/blog/${metadata.slug}`} className="underline">
+                  {metadata.title}
+                </Link>
+              </Typography>
 
-              <p className="text-xl text-gray-700 dark:text-zinc-400">
-                {metadata.date}
-              </p>
+              <Typography variant="small">{metadata.date}</Typography>
             </div>
           ))}
         </div>
 
-        <Link href="/blog" className="text-xl text-green-600 underline">
-          see all blog posts
-        </Link>
+        {posts.length > 3 && (
+          <Link href="/blog" className="text-xl text-green-600 underline">
+            see all blog posts
+          </Link>
+        )}
       </div>
     </div>
   );
