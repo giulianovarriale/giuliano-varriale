@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { HamburguerMenu } from './_components/HamburguerMenu';
 import Image from 'next/image';
 import { NavLink } from './_components/NavLink';
+import { navigation } from './_data/navigation';
 
 const afacadFlux = Afacad_Flux({
   variable: '--font-afacad_flux',
@@ -28,7 +29,7 @@ export default function RootLayout({
       >
         <Header />
 
-        <main className="max-w-screen-xl mx-auto py-12 px-6 md:py-20 md:px-9">
+        <main className="max-w-screen-md mx-auto py-12 px-6 md:py-20 md:px-9">
           {children}
         </main>
 
@@ -60,17 +61,15 @@ function Header() {
       </Link>
 
       <div className="md:hidden">
-        <HamburguerMenu
-          navigation={
-            <nav className="flex flex-col gap-6 text-xl font-semibold dark:text-zinc-100">
-              <NavLinks />
-            </nav>
-          }
-        />
+        <HamburguerMenu />
       </div>
 
       <nav className="hidden md:flex justify-center gap-6 text-2xl font-semibold dark:text-zinc-100">
-        <NavLinks />
+        {navigation.map((nav) => (
+          <NavLink key={nav.href} href={nav.href}>
+            {nav.label}
+          </NavLink>
+        ))}
       </nav>
     </header>
   );
@@ -87,17 +86,5 @@ function Footer() {
         by <Link href="/">Giuliano Varriale</Link>
       </p>
     </footer>
-  );
-}
-
-function NavLinks() {
-  return (
-    <>
-      <NavLink href="/">home</NavLink>
-      <NavLink href="/about">about</NavLink>
-      <NavLink href="/blog">blog</NavLink>
-      <NavLink href="/experiments">experiments</NavLink>
-      <NavLink href="/contact">contact</NavLink>
-    </>
   );
 }

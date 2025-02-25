@@ -1,13 +1,11 @@
 'use client';
 
 import { Menu, X } from 'lucide-react';
-import { type ReactNode, useState } from 'react';
+import { useState } from 'react';
+import { navigation } from '../_data/navigation';
+import { NavLink } from './NavLink';
 
-type Props = {
-  navigation: ReactNode;
-};
-
-export function HamburguerMenu({ navigation }: Props) {
+export function HamburguerMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,7 +31,17 @@ export function HamburguerMenu({ navigation }: Props) {
           <X className="dark:text-zinc-100" />
         </button>
 
-        {navigation}
+        <nav className="flex flex-col gap-6 text-xl font-semibold dark:text-zinc-100">
+          {navigation.map((nav) => (
+            <NavLink
+              key={nav.href}
+              href={nav.href}
+              onClick={() => setIsOpen(false)}
+            >
+              {nav.label}
+            </NavLink>
+          ))}
+        </nav>
       </div>
     </>
   );
