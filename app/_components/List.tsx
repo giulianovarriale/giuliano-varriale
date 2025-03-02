@@ -4,12 +4,12 @@ type Props = {
 
 export function List({ children }: Props) {
   return (
-    <ul className="list-disc pl-4 dark:text-zinc-400 text-lg mb-5">
+    <ul className="list-disc pl-4 dark:text-zinc-400 text-xl mb-5">
       {children}
     </ul>
   );
 }
 
 export function ListItem({ children }: Props) {
-  return <li>{children}</li>;
+  return <li className="mb-3">{children}</li>;
 }

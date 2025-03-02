@@ -1,0 +1,172 @@
+import { FirstImplementation } from './FirstImplementation'
+import { InitialDesign, WithRealData, WithSubgrid } from './components'
+
+export const metadata = {
+  title: 'Implementing a product card with subgrids',
+  date: '02-03-2025',
+  description: 'How to align the elements of a product card using subgrids',
+  slug: 'implementing-a-product-card-with-subgrids',
+};
+
+# Implementing a product card with subgrids
+
+Let's say that you have to implement a product listing page.
+You look at the designs and it seems quite simple. You just need to implement a minimalist product card like the one below:
+
+<FirstImplementation/>
+
+Your markup looks like this:
+
+```tsx
+const product = {
+  id: 1,
+  category: 'Electronics',
+  title: 'Wireless Noise-Canceling Headphones',
+  description:
+    'Experience immersive sound with our premium wireless noise-canceling headphones.',
+  promotionLabels: ['Best Seller!', 'Limited Time: 20% Off!'],
+  price: 149.99,
+  image: wirelessNoiseCancellingImage.src,
+};
+
+function ProductCard() {
+  return (
+    <div className="product-card">
+      <div className="product-card__header">
+        <p className="product-card__category">{product.category}</p>
+
+        <Image
+          src={product.image}
+          width={200}
+          height={200}
+          alt={product.title}
+          className="product-card__image"
+        />
+      </div>
+
+      <div className="product-card__content">
+        <h2 className="product-card__title">{product.title}</h2>
+        <p className="product-card__description">{product.description}</p>
+      </div>
+
+      <div className="product-card__footer">
+        <div className="product-card__promo-labels">
+          {product.promotionLabels.map((label, index) => (
+            <div
+              key={index}
+              className={`product-card__promo-label product-card__promo-label--${index}`}
+            >
+              {label}
+            </div>
+          ))}
+        </div>
+
+        <p className="product-card__price">{product.price}</p>
+      </div>
+    </div>
+  );
+}
+```
+
+And your css like this:
+
+```css
+.product-card {
+  display: grid;
+  padding: 16px;
+  background: #fff;
+  gap: 16px;
+}
+
+.product-card__header {
+  display: grid;
+  gap: 4px;
+}
+
+.product-card__content {
+  display: grid;
+  gap: 8px;
+}
+
+.product-card__footer {
+  display: grid;
+  gap: 8px;
+}
+
+.product-card__category {
+  text-transform: uppercase;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.product-card__title {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: bold;
+  color: #000;
+}
+
+.product-card__description {
+  color: #737373;
+  line-height: 1.2;
+}
+
+.product-card__promo-labels {
+  display: grid;
+  gap: 4px;
+  place-items: start;
+}
+
+.product-card__promo-label {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 4px 8px;
+  background: #54af60;
+}
+
+.product-card__price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+.product-card__promo-label--0 {
+  background: #4a90e2;
+}
+
+.product-card__promo-label--1 {
+  background: #54af60;
+}
+
+.product-card__promo-label--2 {
+  background: #f5a623;
+}
+
+.product-card__promo-label--3 {
+  background: #ff5a5f;
+}
+```
+
+You render it with fake data and it looks great. You ask the UX designer to check it and it is approved right away.
+"Awesome, you think. Now I just need to replace the fake data with the real one and I'm done for the day."
+
+You replace the fake data with the real implementation, hit save, the page is refreshed, and then, something feels off.
+
+<WithRealData/>
+
+It takes some time until you realise the issue: in the real world, the data can vary a lot:
+* Some products might have a short name, others long ones. The same for descriptions.
+* Not all the products have active promotions.
+* The quantity selector might be disabled for certain products.
+
+You show to your UX designer again and they say it is a no go.
+The miss alignment between card elements make the product information hard to be tracked. The page just seems messy now.
+
+You think: "Oh god, this is just a listing page. I really don't want to write JS for this."
+Turns out you don't need to. You can use subgrids instead.
+
+<WithSubgrid/>

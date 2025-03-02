@@ -1,3 +1,6 @@
+import type { BundledLanguage } from 'shiki';
+import { codeToHtml } from 'shiki';
+
 import type { MDXComponents } from 'mdx/types';
 import { Typography } from './app/_components/Typography';
 import { List, ListItem } from './app/_components/List';
@@ -40,6 +43,30 @@ export function useMDXComponents(components: MDXComponents) {
     ),
     ul: ({ children }: Props) => <List>{children}</List>,
     li: ({ children }: Props) => <ListItem>{children}</ListItem>,
+    a: ({
+      children,
+      ...props
+    }: Props & React.HTMLAttributes<HTMLAnchorElement>) => (
+      <a {...props} className="text-green-600 underline">
+        {children}
+      </a>
+    ),
+    code: (props: { children: string; className: string }) => {
+      const [, lang] = props.className.split('-');
+
+      return (
+        <CodeBlock lang={lang as BundledLanguage}>{props.children}</CodeBlock>
+      );
+    },
     ...components,
   };
+}
+
+async function CodeBlock(props: { children: string; lang: BundledLanguage }) {
+  const out = await codeToHtml(props.children, {
+    lang: props.lang,
+    theme: 'github-dark',
+  });
+
+  return <div dangerouslySetInnerHTML={{ __html: out }} className="mb-5" />;
 }

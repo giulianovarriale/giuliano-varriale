@@ -20,7 +20,7 @@ export default async function Page({
   const { default: Post } = await import(`./${slug}/post.mdx`);
 
   return (
-    <div className="max-w-screen-sm mx-auto">
+    <div className="mx-auto">
       <Post />
     </div>
   );
